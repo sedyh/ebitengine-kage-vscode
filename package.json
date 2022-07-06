@@ -1,0 +1,42 @@
+{
+    "name": "ebitengine-kage",
+    "publisher": "sedyh",
+    "displayName": "ebitengine-kage",
+    "description": "Language for writing shaders on Ebitengine",
+    "version": "0.1.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sedyh/ebitengine-kage-support.git"
+    },      
+    "engines": {
+        "vscode": "^1.68.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "license": "See LICENSE file",
+    "icon": "kage.png",
+    "contributes": {
+        "languages": [{
+            "id": "kage",
+            "aliases": ["kage", "kage"],
+            "extensions": [".kage",".go.kage",".kage.go"],
+            "configuration": "./syntaxes/language-configuration.json",
+            "icon": {
+                "light": "kage-file-light-theme.png",
+                "dark": "kage-file-dark-theme.png"
+            }
+        }],
+        "grammars": [{
+            "language": "kage",
+            "scopeName": "source.kage",
+            "path": "./syntaxes/kage.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+                "language": "kage",
+                "path": "./syntaxes/snippets.json"
+            }
+        ]
+    }
+}

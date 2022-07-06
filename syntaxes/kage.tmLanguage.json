@@ -1,0 +1,87 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "kage",
+	"patterns": [
+		{ "include": "#keywords"  },
+		{ "include": "#types"     },
+		{ "include": "#builtins"  },
+		{ "include": "#functions" },
+		{ "include": "#numbers"   },
+		{ "include": "#comments"  }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.kage",
+					"match": "\\b(package|var|func|if|for|return|true|false|nil)\\b"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "constant.language.kage",
+					"match": "\\b(bool|int|float|vec2|vec3|vec4|mat2|mat3|mat4)\\b"
+				}
+			]
+		},
+		"builtins": {
+			"patterns": [
+				{
+					"name": "entity.name.tag.kage",
+					"match": "\\b(sin|cos|tan|asin|acos|atan|atan2|pow|exp|log|exp2|log2|sqrt|inversesqrt|abs|sign|floor|ceil|fract|mod|min|max|clamp|mix|step|smoothstep|length|distance|dot|bcross|normalize|faceforward|reflect|refract|transpose|dfdx|dfdy|fwidth)\\b"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"name": "entity.name.function.kage",
+					"match": "(?<=func )([a-zA-Z][a-zA-Z0-9]+)(?=\\()"
+				},
+				{
+					"name": "support.function.kage",
+					"match": "[a-zA-Z][a-zA-Z0-9]+(?=\\(.*\\))"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.kage",
+					"match": "(((\\.\\d+|0[xXbBoO][\\dbBxXaAbBcCdDeEfF_]*|(?<=[^\\w])\\d+)\\.{0,1}[\\dbBxXaAbBcCdDeEfF_]*([eEpP][-+]{0,1}\\d+))|((\\.\\d+|0[xXbBoO][\\dbBxXaAbBcCdDeEfF_]*|(?<=[^\\w])\\d+)\\.{0,1}[\\dbBxXaAbBcCdDeEfF_]*))i{0,1}"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.kage",
+					"match": "//.*"
+				},
+				{                  
+                    "name": "comment.block.kage",
+                    "begin": "/\\*(?!\\*)",
+                    "end": "\\*/",
+                    "patterns": [
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+				},
+				{
+                    "name": "comment.block.documentation.kage",
+                    "begin": "/\\*\\*",
+                    "end": "\\*/",
+                    "patterns": [
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+			]
+		}
+	},
+	"scopeName": "source.kage"
+}

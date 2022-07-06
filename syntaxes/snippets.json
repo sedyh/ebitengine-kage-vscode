@@ -1,0 +1,227 @@
+{
+    "main": {
+        "prefix": ["fragment", "package"],
+        "body": ["package main", "", "func Fragment(pos vec4, tex vec2, col vec4) vec4 {", "\t$0", "\treturn vec4(0.5, 0.0, 0.0, 1.0)", "}"],
+        "description": "The basis for the shader"
+    },
+    "vec2": {
+        "prefix": ["vec2"],
+        "body": ["vec2(0, 0)"],
+        "description": "Usage vec2(x, y) or vec2(x)"
+    },
+    "vec3": {
+        "prefix": ["vec3"],
+        "body": ["vec3(0, 0, 0)"],
+        "description": "Usage vec3(x, y, z) or vec3(x)"
+    },
+    "vec4": {
+        "prefix": ["vec4"],
+        "body": ["vec4(0, 0, 0, 0)"],
+        "description": "Usage vec4(x, y, z, w) or vec4(x)"
+    },
+    "mat2": {
+        "prefix": ["mat2"],
+        "body": ["mat2(", "\t0, 0", "\t0, 0,", ")"],
+        "description": "Usage mat2(\n  a, b,\n  c, d\n)"
+    },
+    "mat3": {
+        "prefix": ["mat3"],
+        "body": ["mat3(", "\t0, 0, 0,", "\t0, 0, 0,", "\t0, 0, 0,", ")"],
+        "description": "Usage mat3(\n  a, b, c,\n  d, e, f,\n  g, h, i\n)"
+    },
+    "mat4": {
+        "prefix": ["mat4"],
+        "body": ["mat4(", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", ")"],
+        "description": "Usage mat4(\n  a, b, c, d,\n  e, f, g, h,\n  i, j, k, l\n)"
+    },
+    "sin": {
+        "prefix": ["sin", "kage"],
+        "body": ["sin($0)"],
+        "description": "Usage sin(x T)\n\nT is float or vec"
+    },
+    "cos": {
+        "prefix": ["cos", "kage"],
+        "body": ["cos($0)"],
+        "description": "Usage cos(x T)\n\nT is float or vec"
+    },
+    "tan": {
+        "prefix": ["tan", "kage"],
+        "body": ["tan($0)"],
+        "description": "Usage tan(x T)\n\nT is float or vec"
+    },
+    "asin": {
+        "prefix": ["asin", "kage"],
+        "body": ["asin($0)"],
+        "description": "Usage asin(x T)\n\nT is float or vec"
+    },
+    "acos": {
+        "prefix": ["acos", "kage"],
+        "body": ["acos($0)"],
+        "description": "Usage acos(x T)\n\nT is float or vec"
+    },
+    "atan": {
+        "prefix": ["atan", "kage"],
+        "body": ["atan($0)"],
+        "description": "Usage atan(y_over_x T)\n\nT is float or vec"
+    },
+    "atan2": {
+        "prefix": ["atan2", "kage"],
+        "body": ["atan2($0)"],
+        "description": "Usage atan2(x, y T)\n\nT is float or vec"
+    },
+    "pow": {
+        "prefix": ["pow", "kage"],
+        "body": ["pow($0)"],
+        "description": "Usage pow(x, y T)\n\nT is float or vec"
+    },
+    "exp": {
+        "prefix": ["exp", "kage"],
+        "body": ["exp($0)"],
+        "description": "Usage exp(x T)\n\nT is float or vec"
+    },
+    "log": {
+        "prefix": ["log", "kage"],
+        "body": ["log($0)"],
+        "description": "Usage log(x T)\n\nT is float or vec"
+    },
+    "exp2": {
+        "prefix": ["exp2", "kage"],
+        "body": ["exp2($0)"],
+        "description": "Usage exp2(x T)\n\nT is float or vec"
+    },
+    "log2": {
+        "prefix": ["log2", "kage"],
+        "body": ["log2($0)"],
+        "description": "Usage log2(x T)\n\nT is float or vec"
+    },
+    "sqrt": {
+        "prefix": ["sqrt", "kage"],
+        "body": ["sqrt($0)"],
+        "description": "Usage sqrt(x T)\n\nT is float or vec"
+    },
+    "inversesqrt": {
+        "prefix": ["inversesqrt", "kage"],
+        "body": ["inversesqrt($0)"],
+        "description": "Usage inversesqrt(x T)\n\nT is float or vec"
+    },
+    "abs": {
+        "prefix": ["abs", "kage"],
+        "body": ["abs($0)"],
+        "description": "Usage abs(x T)\n\nT is float or vec"
+    },
+    "sign": {
+        "prefix": ["sign", "kage"],
+        "body": ["sign($0)"],
+        "description": "Usage sign(x T)\n\nT is float or vec"
+    },
+    "floor": {
+        "prefix": ["floor", "kage"],
+        "body": ["floor($0)"],
+        "description": "Usage floor(x T)\n\nT is float or vec"
+    },
+    "ceil": {
+        "prefix": ["ceil", "kage"],
+        "body": ["ceil($0)"],
+        "description": "Usage ceil(x T)\n\nT is float or vec"
+    },
+    "fract": {
+        "prefix": ["fract", "kage"],
+        "body": ["fract($0)"],
+        "description": "Usage fract(x T)\n\nT is float or vec"
+    },
+    "mod": {
+        "prefix": ["mod", "kage"],
+        "body": ["mod($0)"],
+        "description": "Usage mod(x, y T)\n\nT is float or vec"
+    },
+    "min": {
+        "prefix": ["min", "kage"],
+        "body": ["min($0)"],
+        "description": "Usage min(x, y T)\n\nT is float or vec"
+    },
+    "max": {
+        "prefix": ["max", "kage"],
+        "body": ["max($0)"],
+        "description": "Usage max(x, y T)\n\nT is float or vec"
+    },
+    "clamp": {
+        "prefix": ["clamp", "kage"],
+        "body": ["clamp($0)"],
+        "description": "Usage clap(x, min, max T)\n\nT is float or vec"
+    },
+    "mix": {
+        "prefix": ["mix", "kage"],
+        "body": ["mix($0)"],
+        "description": "Usage mix(x, y, a T)\n\nT is float or vec"
+    },
+    "step": {
+        "prefix": ["step", "kage"],
+        "body": ["step($0)"],
+        "description": "Usage step(edge, x T)\n\nT is float or vec"
+    },
+    "smoothstep": {
+        "prefix": ["smoothstep", "kage"],
+        "body": ["smoothstep($0)"],
+        "description": "Usage smoothstep(edge0, edge1, x T)\n\nT is float or vec"
+    },
+    "length": {
+        "prefix": ["length", "kage"],
+        "body": ["length($0)"],
+        "description": "Usage length(x T)\n\nT is float or vec"
+    },
+    "distance": {
+        "prefix": ["distance", "kage"],
+        "body": ["distance($0)"],
+        "description": "Usage distance(p0, p1 T)\n\nT is float or vec"
+    },
+    "dot": {
+        "prefix": ["dot", "kage"],
+        "body": ["dot($0)"],
+        "description": "Usage dot(x, y T)\n\nT is float or vec"
+    },
+    "cross": {
+        "prefix": ["cross", "kage"],
+        "body": ["cross($0)"],
+        "description": "Usage cross(x, y vec3)"
+    },
+    "normalize": {
+        "prefix": ["normalize", "kage"],
+        "body": ["normalize($0)"],
+        "description": "Usage normalize(x T)\n\nT is float or vec"
+    },
+    "faceforward": {
+        "prefix": ["faceforward", "kage"],
+        "body": ["faceforward($0)"],
+        "description": "Usage faceforward(n, i, nref T)\n\nT is float or vec"
+    },
+    "reflect": {
+        "prefix": ["reflect", "kage"],
+        "body": ["reflect($0)"],
+        "description": "Usage reflect(i, n T)\n\nT is float or vec"
+    },
+    "refract": {
+        "prefix": ["refract", "kage"],
+        "body": ["refract($0)"],
+        "description": "Usage refract(i, n T, eta float)\n\nT is float or vec"
+    },
+    "transpose": {
+        "prefix": ["transpose", "kage"],
+        "body": ["transpose($0)"],
+        "description": "Usage transpose(x T)\n\nT is mat"
+    },
+    "dfdx": {
+        "prefix": ["dfdx", "kage"],
+        "body": ["dfdx($0)"],
+        "description": "Usage dfdx(x T)\n\nT is float or vec"
+    },
+    "dfdy": {
+        "prefix": ["dfdy", "kage"],
+        "body": ["dfdy($0)"],
+        "description": "Usage dfdy(x T)\n\nT is float or vec"
+    },
+    "fwidth": {
+        "prefix": ["fwidth", "kage"],
+        "body": ["fwidth($0)"],
+        "description": "Usage fwidth(x T)\n\nT is float or vec"
+    }
+}
