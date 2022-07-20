@@ -1,0 +1,26 @@
+name: Release
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install npm
+        run: npm i
+
+      - name: Install vsce
+        run: npm i -g vsce
+        
+      - name: Publish extension
+        run: vsce publish -p ${{ secrets.VSCE_PAT }}
