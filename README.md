@@ -47,7 +47,7 @@ Ebitengine adopts an original shading language 'Kage'. This has a compatible syn
 
 <a href="#features"><img src="https://user-images.githubusercontent.com/19890545/150034365-6561ab71-5cb4-466f-996c-ae4204ef7c12.png" alt="back" title="back" width="16px"/></a> This plugin provides basic Kage language support for Ebitengine. It includes keywords, types, literals and snippets.
 
-![feature-syntax](https://user-images.githubusercontent.com/19890545/177754828-9ab585c9-56be-4304-92e5-dafa0b10ba97.png)
+![feature-syntax](https://user-images.githubusercontent.com/19890545/187960786-0a9292f7-3143-414e-bf5f-e44db90f458c.png)
 
 ### Quick start
 

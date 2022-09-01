@@ -1,0 +1,103 @@
+{
+	"$schema": "vscode://schemas/color-theme",
+	"name": "Dark (Ebitengine Kage)",
+	"tokenColors": [
+		{
+			"name": "kage-keywords",
+			"scope": [
+				"keyword.control.kage",
+			],
+			"settings": {
+				"foreground": "#C586C0"
+			}
+		},
+		{
+			"name": "kage-types",
+			"scope": "constant.language.kage",
+			"settings": {
+				"foreground": "#569cd6"
+			}
+		},
+		{
+			"name": "kage-builtins",
+			"scope": [
+				"entity.name.tag.kage",
+			],
+			"settings": {
+				"foreground": "#569cd6"
+			}
+		},
+		{
+			"name": "kage-functions",
+			"scope": [
+				"entity.name.function.kage",
+				"support.function.kage",
+			],
+			"settings": {
+				"foreground": "#DCDCAA"
+			}
+		},
+		{
+			"name": "kage-numbers",
+			"scope": [
+				"constant.numeric.kage"
+			],
+			"settings": {
+				"foreground": "#b5cea8"
+			},
+		},
+		{
+			"name": "kage-swizzling-rxs",
+			"scope": [
+				"support.other.r.kage",
+				"support.other.x.kage",
+				"support.other.s.kage"
+			],
+			"settings": {
+				"foreground": "#a87171"
+			},
+		},
+		{
+			"name": "kage-swizzling-qyt",
+			"scope": [
+				"support.other.g.kage",
+				"support.other.y.kage",
+				"support.other.t.kage"
+			],
+			"settings": {
+				"foreground": "#75ac8a"
+			},
+		},
+		{
+			"name": "kage-swizzling-bzp",
+			"scope": [
+				"support.other.b.kage",
+				"support.other.z.kage",
+				"support.other.p.kage"
+			],
+			"settings": {
+				"foreground": "#717ea3"
+			},
+		},
+		{
+			"name": "kage-swizzling-awq",
+			"scope": [
+				"support.other.a.kage",
+				"support.other.w.kage",
+				"support.other.q.kage"
+			],
+			"settings": {
+				"foreground": "#a19b78"
+			},
+		},
+		{
+			"name": "kage-comment",
+			"scope": [
+				"comment",
+			],
+			"settings": {
+				"foreground": "#6A9955"
+			}
+		},
+	]
+}

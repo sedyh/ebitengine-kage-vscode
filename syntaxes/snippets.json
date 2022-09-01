@@ -223,5 +223,25 @@
         "prefix": ["fwidth", "kage"],
         "body": ["fwidth($0)"],
         "description": "Usage fwidth(x T)\n\nT is float or vec"
+    },
+    "discard": {
+        "prefix": ["discard", "kage"],
+        "body": ["discard()$0"],
+        "description": "Abandons the operation on the current fragment"
+    },
+    "swizzling-rgba": {
+        "prefix": [".rgba", "kage"],
+        "body": [".rgba$0"],
+        "description": "Read and write multiple vec components at the same time"
+    },
+    "swizzling-xyzw": {
+        "prefix": [".xyzw", "kage"],
+        "body": [".xyzw$0"],
+        "description": "Read and write multiple vec components at the same time"
+    },
+    "swizzling-stpq": {
+        "prefix": [".stpq", "kage"],
+        "body": [".stpq$0"],
+        "description": "Read and write multiple vec components at the same time"
     }
 }
