@@ -3,7 +3,7 @@
     "publisher": "sedyh",
     "displayName": "ebitengine-kage",
     "description": "Language for writing shaders on Ebitengine",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "repository": {
         "type": "git",
         "url": "https://github.com/sedyh/ebitengine-kage-support.git"
@@ -36,18 +36,6 @@
             {
                 "language": "kage",
                 "path": "./syntaxes/snippets.json"
-            }
-        ],
-        "themes": [
-            {
-                "label": "Dark Ebitengine Kage",
-                "uiTheme": "vs-dark",
-                "path": "./themes/kage-dark.json"
-            },
-            {
-                "label": "Light Ebitengine Kage",
-                "uiTheme": "vs",
-                "path": "./themes/kage-light.json"
             }
         ]
     }
