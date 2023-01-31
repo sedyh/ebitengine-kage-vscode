@@ -33,7 +33,7 @@ Ebitengine adopts an original shading language 'Kage'. This has a compatible syn
 </details>
 
 ### Other editors
-[![](https://img.shields.io/badge/source-555555?style=for-the-badge&logo=sublimetext&logoColor=ba9759)](https://github.com/sedyh/ebitengine-kage-sublime)[![](https://img.shields.io/badge/download-ba9759?style=for-the-badge)](https://packagecontrol.io)<br>
+[![](https://img.shields.io/badge/source-555555?style=for-the-badge&logo=sublimetext&logoColor=ba9759)](https://github.com/sedyh/ebitengine-kage-sublime)[![](https://img.shields.io/badge/download-ba9759?style=for-the-badge)](https://packagecontrol.io/packages/Ebitengine%20Kage)<br>
 [![](https://img.shields.io/badge/source-555555?style=for-the-badge&logo=vim&logoColor=60b371)](https://github.com/sedyh/ebitengine-kage-vim)[![](https://img.shields.io/badge/download-60b371?style=for-the-badge)](https://www.vim.org/scripts/script.php?script_id=6021)
 
 ### Features
