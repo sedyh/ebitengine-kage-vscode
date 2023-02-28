@@ -1,246 +1,608 @@
 {
     "main": {
-        "prefix": ["fragment", "package"],
-        "body": ["package main", "", "func Fragment(pos vec4, tex vec2, col vec4) vec4 {", "\t$0", "\treturn vec4(0.5, 0.0, 0.0, 1.0)", "}"],
-        "description": "The basis for the shader"
+        "prefix": ["fragment", "package", "kage"],
+        "body": [
+            "package main", "", 
+            "func Fragment(pos vec4, tex vec2, col vec4) vec4 {", 
+            "\t$0", 
+            "\treturn vec4(0.5, 0.0, 0.0, 1.0)", 
+            "}"
+        ],
+        "description": [
+            "The basis for the shader", "",
+            "pos: destination pixel position, xy is in range 0..N",
+            "tex: source texture texel position, xy is in range 0..1",
+            "col: supplemental color information given from vertices, rgba is in range 0..1", 
+            "Returns: current position color",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageColorNAtPixel": {
+        "prefix": ["imageColorNAtPixel", "kage"],
+        "body": [
+            "func imageColor${1|0,1,2,3|}AtPixel(pixelCoords vec2) vec4 {",
+            "\tsizeInPixels := imageSrcTextureSize()", 
+            "\toffsetInTexels, _ := imageSrcRegionOnTexture()", 
+            "\tadjustedTexelCoords := pixelCoords/sizeInPixels + offsetInTexels", 
+            "\treturn imageSrc$1At(adjustedTexelCoords)",
+            "}"
+        ],
+        "description": [
+            "Usage imageColorNAtPixel(pos vec2) vec2", "N is 0 to 3", "",
+            "For users who are not familiar with texels, it is recommended to use this helper function",
+            "instead of the standard ones to access an image's color at the given pixel coordinates",
+            "Returns: image's color at the given pixel pos, xy in range 0..N",
+            "Documentation: https://github.com/tinne26/kage-desk/blob/main/docs/tutorials/intro/07_images.md"
+        ]
+    },
+    "imageColorNAtUnit": {
+        "prefix": ["imageColorNAtUnit", "kage"],
+        "body": [
+            "func imageColor${1|0,1,2,3|}AtUnit(unitCoords vec2) vec4 {",
+            "\toffsetInTexels, sizeInTexels := imageSrcRegionOnTexture()", 
+            "\tadjustedTexelCoords := unitCoords*sizeInTexels + offsetInTexels", 
+            "\treturn imageSrc$1At(adjustedTexelCoords)",
+            "}"
+        ],
+        "description": [
+            "Usage imageColorNAtUnit(pos vec2) vec2", "N is 0 to 3", "",
+            "For users who are not familiar with texels, it is recommended to use this helper function",
+            "instead of the standard ones to access an image's color at the given pixel coordinates",
+            "Returns: image's color at the given pixel pos, xy in range 0..1",
+            "Documentation: https://github.com/tinne26/kage-desk/blob/main/docs/tutorials/intro/07_images.md"
+        ]
+    },
+    "imageSrcNAt": {
+        "prefix": ["imageSrcNAt", "kage"],
+        "body": ["imageSrc${1|0,1,2,3|}At($0)"],
+        "description": [
+            "Usage imageSrcNAt(pos vec2) vec2", "N is 0 to 3", "",
+            "Returns: color value as vec4 at the given position pos in texels of the source image N",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageSrcNUnsafeAt": {
+        "prefix": ["imageSrcNUnsafeAt", "kage"],
+        "body": ["imageSrc${1|0,1,2,3|}UnsafeAt($0)"],
+        "description": [
+            "Usage imageSrcNUnsafeAt(pos vec2) vec2", "N is 0 to 3", "",
+            "Returns: color value as vec4 at the given position pos in texels of the source image N, but without boundary checks",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageSrcTextureSize": {
+        "prefix": ["imageSrcTextureSize", "kage"],
+        "body": ["imageSrcTextureSize()"],
+        "description": [
+            "Usage imageSrcTextureSize() vec2", "",
+            "Returns: source image's texture size in pixels",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageDstTextureSize": {
+        "prefix": ["imageDstTextureSize", "kage"],
+        "body": ["imageDstTextureSize()"],
+        "description": [
+            "Usage imageDstTextureSize() vec2", "",
+            "Returns: destination image's texture size in pixels",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageSrcRegionOnTexture": {
+        "prefix": ["imageSrcRegionOnTexture", "kage"],
+        "body": ["imageSrcRegionOnTexture()"],
+        "description": [
+            "Usage imageSrcRegionOnTexture() (vec2, vec2)", "",
+            "Returns: source image's origin position and the size on the texture in texels",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "imageDstRegionOnTexture": {
+        "prefix": ["imageDstRegionOnTexture", "kage"],
+        "body": ["imageDstRegionOnTexture()"],
+        "description": [
+            "Usage imageDstRegionOnTexture() (vec2, vec2)", "",
+            "Returns: destination image's origin position and the size on the texture in texels",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "vec2": {
         "prefix": ["vec2"],
         "body": ["vec2(0, 0)"],
-        "description": "Usage vec2(x, y) or vec2(x)"
+        "description": [
+            "Usage: vec2(x, y) or vec2(x)", "",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "vec3": {
         "prefix": ["vec3"],
         "body": ["vec3(0, 0, 0)"],
-        "description": "Usage vec3(x, y, z) or vec3(x)"
+        "description": [
+            "Usage: vec3(x, y, z) or vec3(x)", "",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "vec4": {
         "prefix": ["vec4"],
         "body": ["vec4(0, 0, 0, 0)"],
-        "description": "Usage vec4(x, y, z, w) or vec4(x)"
+        "description": [
+            "Usage: vec4(x, y, z, w) or vec4(x)", "",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "mat2": {
         "prefix": ["mat2"],
-        "body": ["mat2(", "\t0, 0", "\t0, 0,", ")"],
-        "description": "Usage mat2(\n  a, b,\n  c, d\n)"
+        "body": [
+            "mat2(", 
+            "\t0, 0", 
+            "\t0, 0,", 
+            ")"
+        ],
+        "description": [
+            "Usage: mat2(",
+            "  a, b,",
+            "  c, d,",
+            ")",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "mat3": {
         "prefix": ["mat3"],
-        "body": ["mat3(", "\t0, 0, 0,", "\t0, 0, 0,", "\t0, 0, 0,", ")"],
-        "description": "Usage mat3(\n  a, b, c,\n  d, e, f,\n  g, h, i\n)"
+        "body": [
+            "mat3(", 
+            "\t0, 0, 0,", 
+            "\t0, 0, 0,", 
+            "\t0, 0, 0,", 
+            ")"
+        ],
+        "description": [
+            "Usage: mat3(",
+            "  a, b, c,",
+            "  d, e, f,",
+            "  g, h, i,",
+            ")",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "mat4": {
         "prefix": ["mat4"],
-        "body": ["mat4(", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", "\t0, 0, 0, 0,", ")"],
-        "description": "Usage mat4(\n  a, b, c, d,\n  e, f, g, h,\n  i, j, k, l\n)"
+        "body": [
+            "mat4(", 
+            "\t0, 0, 0, 0,", 
+            "\t0, 0, 0, 0,", 
+            "\t0, 0, 0, 0,", 
+            "\t0, 0, 0, 0,", 
+            ")"
+        ],
+        "description": [
+            "Usage mat4(",
+            "  a, b, c, d,",
+            "  e, f, g, h,",
+            "  i, j, k, l",
+            "  m, n, o, p,",
+            ")",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "sin": {
         "prefix": ["sin", "kage"],
         "body": ["sin($0)"],
-        "description": "Usage sin(x T)\n\nT is float or vec"
+        "description": [
+            "Usage sin(x T)", "T is float or vec", "",
+            "Calculates: trigonometric sine of angle x in radians",
+            "Returns: sin(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/sin.xhtml"
+        ]
     },
     "cos": {
         "prefix": ["cos", "kage"],
         "body": ["cos($0)"],
-        "description": "Usage cos(x T)\n\nT is float or vec"
+        "description": [
+            "Usage cos(x T)", "T is float or vec", "",
+            "Calculates: trigonometric cosine of angle x in radians",
+            "Returns: cos(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/cos.xhtml"
+        ]
     },
     "tan": {
         "prefix": ["tan", "kage"],
         "body": ["tan($0)"],
-        "description": "Usage tan(x T)\n\nT is float or vec"
+        "description": [
+            "Usage tan(x T)", "T is float or vec", "",
+            "Calculates: trigonometric tangent of angle x in radians",
+            "Returns: tan(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/tan.xhtml"
+        ]
     },
     "asin": {
         "prefix": ["asin", "kage"],
         "body": ["asin($0)"],
-        "description": "Usage asin(x T)\n\nT is float or vec"
+        "description": [
+            "Usage asin(x T)", "T is float or vec", "",
+            "Calculates: angle in radians whose trigonometric sine is x",
+            "Returns: asin(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/asin.xhtml"
+        ]
     },
     "acos": {
         "prefix": ["acos", "kage"],
         "body": ["acos($0)"],
-        "description": "Usage acos(x T)\n\nT is float or vec"
+        "description": [
+            "Usage acos(x T)", "T is float or vec", "",
+            "Calculates: angle in radians whose trigonometric cosine is x",
+            "Returns: acos(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/acos.xhtml"
+        ]
     },
     "atan": {
         "prefix": ["atan", "kage"],
         "body": ["atan($0)"],
-        "description": "Usage atan(y_over_x T)\n\nT is float or vec"
+        "description": [
+            "Usage atan(x T)", "T is float or vec", "",
+            "Calculates: angle in radians whose trigonometric tangent is x",
+            "Returns: atan(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/atan.xhtml"
+        ]
     },
     "atan2": {
         "prefix": ["atan2", "kage"],
         "body": ["atan2($0)"],
-        "description": "Usage atan2(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage atan2(x, y T)", "T is float or vec", "",
+            "Calculates: angle in radians whose trigonometric tangent is y/x that properly accounts for all 4 quadrants and zero values",
+            "Returns: atan(y/x T) with additional checks",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/atan.xhtml"
+        ]
     },
     "pow": {
         "prefix": ["pow", "kage"],
         "body": ["pow($0)"],
-        "description": "Usage pow(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage pow(x, y T)", "T is float or vec", "",
+            "Calculates: value of x raised to the y power",
+            "Returns: xʸ",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/pow.xhtml"
+        ]
     },
     "exp": {
         "prefix": ["exp", "kage"],
         "body": ["exp($0)"],
-        "description": "Usage exp(x T)\n\nT is float or vec"
+        "description": [
+            "Usage exp(x T)", "T is float or vec", "",
+            "Calculates: natural exponentiation of the x",
+            "Returns: eˣ",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/exp.xhtml"
+        ]
     },
     "log": {
         "prefix": ["log", "kage"],
         "body": ["log($0)"],
-        "description": "Usage log(x T)\n\nT is float or vec"
+        "description": [
+            "Usage log(x T)", "T is float or vec", "",
+            "Calculates: natural logarithm of x, i.e. the value y which satisfies x=e^y",
+            "Returns: logₑx",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/log.xhtml"
+        ]
     },
     "exp2": {
         "prefix": ["exp2", "kage"],
         "body": ["exp2($0)"],
-        "description": "Usage exp2(x T)\n\nT is float or vec"
+        "description": [
+            "Usage exp2(x T)", "T is float or vec", "",
+            "Calculates: 2 raised to the power of the x",
+            "Returns: 2ˣ",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/exp2.xhtml"
+        ]
     },
     "log2": {
         "prefix": ["log2", "kage"],
         "body": ["log2($0)"],
-        "description": "Usage log2(x T)\n\nT is float or vec"
+        "description": [
+            "Usage log2(x T)", "T is float or vec", "",
+            "Calculates: base 2 logarithm of x, i.e. the value y which satisfies x=2^y",
+            "Returns: log₂(x)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/log2.xhtml"
+        ]
     },
     "sqrt": {
         "prefix": ["sqrt", "kage"],
         "body": ["sqrt($0)"],
-        "description": "Usage sqrt(x T)\n\nT is float or vec"
+        "description": [
+            "Usage sqrt(x T)", "T is float or vec", "",
+            "Calculates: square root of the x",
+            "Returns: √x",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/log2.xhtml"
+        ]
     },
     "inversesqrt": {
         "prefix": ["inversesqrt", "kage"],
         "body": ["inversesqrt($0)"],
-        "description": "Usage inversesqrt(x T)\n\nT is float or vec"
+        "description": [
+            "Usage inversesqrt(x T)", "T is float or vec", "",
+            "Calculates: inverse of the square root of the x",
+            "Returns: 1/√x",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/inversesqrt.xhtml"
+        ]
     },
     "abs": {
         "prefix": ["abs", "kage"],
         "body": ["abs($0)"],
-        "description": "Usage abs(x T)\n\nT is float or vec"
+        "description": [
+            "Usage abs(x T)", "T is float or vec", "",
+            "Calculates: absolute value of the x",
+            "Returns: |x|",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/abs.xhtml"
+        ]
     },
     "sign": {
         "prefix": ["sign", "kage"],
         "body": ["sign($0)"],
-        "description": "Usage sign(x T)\n\nT is float or vec"
+        "description": [
+            "Usage sign(x T)", "T is float or vec", "",
+            "Calculates: sign of the x",
+            "Returns: -1 if x < 0 else 1",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/sign.xhtml"
+        ]
     },
     "floor": {
         "prefix": ["floor", "kage"],
         "body": ["floor($0)"],
-        "description": "Usage floor(x T)\n\nT is float or vec"
+        "description": [
+            "Usage floor(x T)", "T is float or vec", "",
+            "Calculates: nearest integer less than or equal to the x",
+            "Returns: floor(x), i.e. 5.95 -> 5",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/floor.xhtml"
+        ]
     },
     "ceil": {
         "prefix": ["ceil", "kage"],
         "body": ["ceil($0)"],
-        "description": "Usage ceil(x T)\n\nT is float or vec"
+        "description": [
+            "Usage ceil(x T)", "T is float or vec", "",
+            "Calculates: nearest integer that is greater than or equal to the x",
+            "Returns: ceil(x), i.e. 5.001 -> 6",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/ceil.xhtml"
+        ]
     },
     "fract": {
         "prefix": ["fract", "kage"],
         "body": ["fract($0)"],
-        "description": "Usage fract(x T)\n\nT is float or vec"
+        "description": [
+            "Usage fract(x T)", "T is float or vec", "",
+            "Calculates: fractional part of the x",
+            "Returns: x - floor(x), i.e. 5.95 -> 0.95",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml"
+        ]
     },
     "mod": {
         "prefix": ["mod", "kage"],
         "body": ["mod($0)"],
-        "description": "Usage mod(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage mod(x, y T)", "T is float or vec", "",
+            "Calculates: value of x modulo y",
+            "Returns: x - y*floor(x/y)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/mod.xhtml"
+        ]
     },
     "min": {
         "prefix": ["min", "kage"],
         "body": ["min($0)"],
-        "description": "Usage min(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage min(x, y T)", "T is float or vec", "",
+            "Calculates: lesser among x and y",
+            "Returns: y if y < x else x",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/min.xhtml"
+        ]
     },
     "max": {
         "prefix": ["max", "kage"],
         "body": ["max($0)"],
-        "description": "Usage max(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage max(x, y T)", "T is float or vec", "",
+            "Calculates: greater among x and y",
+            "Returns: y if y > x else x",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/max.xhtml"
+        ]
     },
     "clamp": {
         "prefix": ["clamp", "kage"],
         "body": ["clamp($0)"],
-        "description": "Usage clap(x, min, max T)\n\nT is float or vec"
+        "description": [
+            "Usage clamp(x, min, max T)", "T is float or vec", "",
+            "Calculates: constrained value that lies between min and max",
+            "Returns: min(max(x, min), max)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/clamp.xhtml"
+        ]
     },
     "mix": {
         "prefix": ["mix", "kage"],
         "body": ["mix($0)"],
-        "description": "Usage mix(x, y, a T)\n\nT is float or vec"
+        "description": [
+            "Usage mix(x, y, a T)", "T is float or vec", "",
+            "Calculates: linear interpolation between x and y",
+            "Returns: x*(1-a) + y*a",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml"
+        ]
     },
     "step": {
         "prefix": ["step", "kage"],
         "body": ["step($0)"],
-        "description": "Usage step(edge, x T)\n\nT is float or vec"
+        "description": [
+            "Usage step(edge, x T)", "T is float or vec", "",
+            "Calculates: step function by comparing x with the edge",
+            "Returns: 0 if x < edge else 1",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/step.xhtml"
+        ]
     },
     "smoothstep": {
         "prefix": ["smoothstep", "kage"],
         "body": ["smoothstep($0)"],
-        "description": "Usage smoothstep(edge0, edge1, x T)\n\nT is float or vec"
+        "description": [
+            "Usage smoothstep(start, end, x T)", "T is float or vec", "",
+            "Calculates: Hermite interpolation between two values",
+            "Returns: 0 if x <= start, 1 if x >= end, else interpolate",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/smoothstep.xhtml"
+        ]
     },
     "length": {
         "prefix": ["length", "kage"],
         "body": ["length($0)"],
-        "description": "Usage length(x T)\n\nT is float or vec"
+        "description": [
+            "Usage length(x T)", "T is vec", "",
+            "Calculates: length of a vector",
+            "Returns: √(x₀² + x₁² + ...)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/length.xhtml"
+        ]
     },
     "distance": {
         "prefix": ["distance", "kage"],
         "body": ["distance($0)"],
-        "description": "Usage distance(p0, p1 T)\n\nT is float or vec"
+        "description": [
+            "Usage length(a, b T)", "T is vec", "",
+            "Calculates: distance between two points",
+            "Returns: length(a-b)",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/distance.xhtml"
+        ]
     },
     "dot": {
         "prefix": ["dot", "kage"],
         "body": ["dot($0)"],
-        "description": "Usage dot(x, y T)\n\nT is float or vec"
+        "description": [
+            "Usage dot(a, b T)", "T is vec", "",
+            "Calculates: dot product of two vectors",
+            "Returns: x₀*y₀ + x₁*y₁ + ...",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/dot.xhtml"
+        ]
     },
     "cross": {
         "prefix": ["cross", "kage"],
         "body": ["cross($0)"],
-        "description": "Usage cross(x, y vec3)"
+        "description": [
+            "Usage cross(a, b T)", "T is vec", "",
+            "Calculates: cross product of two vectors",
+            "Returns: x × y",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/cross.xhtml"
+        ]
     },
     "normalize": {
         "prefix": ["normalize", "kage"],
         "body": ["normalize($0)"],
-        "description": "Usage normalize(x T)\n\nT is float or vec"
+        "description": [
+            "Usage normalize(x T)", "T is vec", "",
+            "Calculates: unit vector in the same direction as the original vector",
+            "Returns: [x₀/length(x), x₁/length(x), ...]",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/normalize.xhtml"
+        ]
     },
     "faceforward": {
         "prefix": ["faceforward", "kage"],
         "body": ["faceforward($0)"],
-        "description": "Usage faceforward(n, i, nref T)\n\nT is float or vec"
+        "description": [
+            "Usage faceforward(n, i, nref T)", "T is vec", "",
+            "Calculates: vector to point away from a surface as defined by its normal, i.e. conditionally flips a vector n if two vectors i and nref are pointing in the same direction",
+            "Returns: n if dot(nref, i) < 0 else -n",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/faceforward.xhtml"
+        ]
     },
     "reflect": {
         "prefix": ["reflect", "kage"],
         "body": ["reflect($0)"],
-        "description": "Usage reflect(i, n T)\n\nT is float or vec"
+        "description": [
+            "Usage reflect(i, n T)", "T is vec", "",
+            "Calculates: reflection direction for a given incident vector i and normalized surface normal n",
+            "Returns: i - 2*dot(n, i)*n",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/reflect.xhtml"
+        ]
     },
     "refract": {
         "prefix": ["refract", "kage"],
         "body": ["refract($0)"],
-        "description": "Usage refract(i, n T, eta float)\n\nT is float or vec"
+        "description": [
+            "Usage length(a, b T)", "T is vec", "",
+            "Calculates: refraction direction for an incident vector i and normalized surface normal n using the ratio of indices of refraction eta",
+            "Returns: eta*i - (eta*dot(n, i)+sqrt(1.0-eta*eta*(1.0-dot(n, i)*dot(n, i))))*n",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/refract.xhtml"
+        ]
     },
     "transpose": {
         "prefix": ["transpose", "kage"],
         "body": ["transpose($0)"],
-        "description": "Usage transpose(x T)\n\nT is mat"
+        "description": [
+            "Usage transpose(x T)", "T is mat", "",
+            "Calculates: transpose of the matrix",
+            "Returns: a matrix flipped along its diagonal",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/transpose.xhtml"
+        ]
     },
     "dfdx": {
         "prefix": ["dfdx", "kage"],
         "body": ["dfdx($0)"],
-        "description": "Usage dfdx(x T)\n\nT is float or vec"
+        "description": [
+            "Usage dfdx(x T)", "T is float or vec", "",
+            "Calculates: rate that a value changes between the current x and the neighboring x₀",
+            "Returns: (x₀ - x) / pixelwidth",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/dFdx.xhtml"
+        ]
     },
     "dfdy": {
         "prefix": ["dfdy", "kage"],
         "body": ["dfdy($0)"],
-        "description": "Usage dfdy(x T)\n\nT is float or vec"
+        "description": [
+            "Usage dfdy(x T)", "T is float or vec", "",
+            "Calculates: rate that a value changes between the current y and the neighboring y₀",
+            "Returns: (y₀ - y) / pixelwidth",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/dFdx.xhtml"
+        ]
     },
     "fwidth": {
         "prefix": ["fwidth", "kage"],
         "body": ["fwidth($0)"],
-        "description": "Usage fwidth(x T)\n\nT is float or vec"
+        "description": [
+            "Usage fwidth(v T)", "T is vec", "",
+            "Calculates: sum of the absolute value of derivatives in x and y of vector v",
+            "Returns: abs(dfdx(v.x)) + abs(dfdy(v.x))",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/fwidth.xhtml"
+        ]
+    },
+    "cap": {
+        "prefix": ["cap"],
+        "body": ["cap($0)"],
+        "description": [
+            "Usage cap(x T)", "T is array", "",
+            "Returns: capacity of the array",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
+    },
+    "len": {
+        "prefix": ["len"],
+        "body": ["len($0)"],
+        "description": [
+            "Usage len(x T)", "T is array", "",
+            "Calculates: length of the array",
+            "Documentation: https://ebitengine.org/en/documents/shader.html"
+        ]
     },
     "discard": {
         "prefix": ["discard", "kage"],
         "body": ["discard()$0"],
-        "description": "Abandons the operation on the current fragment"
+        "description": [
+            "Usage discard()", "",
+            "Stop outputting the current fragment",
+            "Documentation: https://registry.khronos.org/OpenGL-Refpages/gl4/html/distance.xhtml"
+        ]
     },
     "swizzling-rgba": {
-        "prefix": [".rgba", "kage"],
+        "prefix": [".rgba"],
         "body": [".rgba$0"],
         "description": "Read and write multiple vec components at the same time"
     },
     "swizzling-xyzw": {
-        "prefix": [".xyzw", "kage"],
+        "prefix": [".xyzw"],
         "body": [".xyzw$0"],
         "description": "Read and write multiple vec components at the same time"
     },
     "swizzling-stpq": {
-        "prefix": [".stpq", "kage"],
+        "prefix": [".stpq"],
         "body": [".stpq$0"],
         "description": "Read and write multiple vec components at the same time"
     }
